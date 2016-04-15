@@ -99,7 +99,7 @@ public class EmployeeDAO {
 	
 //delete employee details
 
-public void deleteEmployee()
+public void deleteEmployee(Integer employeeNumber)throws Exception,IllegalAccessException
 	{
 		PreparedStatement preparedStatement;
 		Scanner scanner = new Scanner(System.in);
