@@ -99,15 +99,13 @@ public class EmployeeDAO {
 	
 //delete employee details
 
-	public void deleteEmployee()
+public void deleteEmployee()
 	{
 		PreparedStatement preparedStatement;
 		Scanner scanner = new Scanner(System.in);
-    System.out.println("Enter the employee id to be deleted");
-    Integer employeeNumber = scanner.nextInt();
-    
-		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+        	System.out.println("Enter the employee id to be deleted");
+        	Integer employeeNumber = scanner.nextInt();
+   		Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "mahek", "mahek");
 
@@ -119,18 +117,13 @@ public class EmployeeDAO {
 				preparedStatement = con.prepareStatement("delete from employees where employeeNumber="+employeeNumber+" ");
 				preparedStatement.execute();
 				preparedStatement.executeUpdate();
+				preparedStatement.setInt(1, employeeNumber);
 				System.out.println("Record is deleted.");
 			} 
 			else 
 			{
 		     System.out.println("Employee Id you entered does not exist.");   
 		    }			
-	}
-		
-		catch (Exception  e) 
-		{
-			System.out.println("Sorry you cannot delete this employee record");
-		}
+	
 	}
 }
-	
