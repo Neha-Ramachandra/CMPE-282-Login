@@ -22,9 +22,7 @@ public class EmployeeDeletionServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//Accepts employee id and deletes  record.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String employeeId = request.getParameter("employeenum");
 		PrintWriter printWriter= response.getWriter();
