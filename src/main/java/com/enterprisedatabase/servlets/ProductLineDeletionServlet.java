@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/productlinesdelete")
 public class ProductLineDeletionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	ProductLineDAO productlineDAO = new ProductLineDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -23,19 +24,41 @@ public class ProductLineDeletionServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	 //Accepts product line from the employee and deletes the product line record.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String prodLine = request.getParameter("prodlinename"); 
+		PrintWriter printWriter= response.getWriter(); 
+try
+		{	    
+			boolean isValid = productlineDAO.isIdValidProductLine(String.split(prodLine));
+			if(isValid)
+			{
+				productlineDAO.deleteAproductLine(String.split(prodLine));
+				String htmlRespone = "<html>";
+				htmlRespone += "<h2>Product line is successfully deleted with name=: " + prodLine + "</h2>";
+				htmlRespone += "</html>";
+				printWriter.println(htmlRespone);
+			}
+			else
+			{
+				String htmlRespone1 = "<html>";
+				htmlRespone1 += "<h2><b>There is no product line under the</b> </br> name=: " + prodLine + "</h2>";
+				htmlRespone1 += "</html>";
+				printWriter.println(htmlRespone1);
+			}	    
+
+		}
+		catch(Exception e)
+		{
+			String htmlRespone = "<html>";
+			htmlRespone += "<h2>The product line with name: " + prodLine + " cannot be deleted.</h2>";
+			htmlRespone += "</html>";
+
+			printWriter.println(htmlRespone);
+		}	      
+
 	}
 
 }
