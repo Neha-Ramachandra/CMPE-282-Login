@@ -21,7 +21,7 @@
 	</tr>
 	
 	
-    <c:forEach items="${officedetails}" var="officeModel">
+    <c:forEach items="${oficedetails}" var="officeModel">
         <tr>
             <td><c:out value="${officeModel.getOfficeCode()}" /></td>
              <td><c:out value="${officeModel.getOfficeCity()}" /></td>
