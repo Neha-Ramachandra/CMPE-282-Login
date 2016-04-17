@@ -20,7 +20,7 @@
 	</tr>
 	
 	
-    <c:forEach items="${}" var="employeeModel">
+    <c:forEach items="${employeedetails}" var="employeeModel">
         <tr>
             <td><c:out value="${employeeModel.getEmployeeNumber()}" /></td>
              <td><c:out value="${employeerModel.getEmployeeName()}" /></td>
