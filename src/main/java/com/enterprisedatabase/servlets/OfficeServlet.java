@@ -22,12 +22,12 @@ public class OfficeServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Office> officedetails = officesDAO.findAllOffices();
 			request.setAttribute("officedetails", officedetails);
-			request.getRequestDispatcher("/WEB-INF/JSPs/officedetails.jsp").forward(request, response);
-	}
-		
+			request.getRequestDispatcher("/WEB-INF/JSPs/allofficeslist.jsp").forward(request, response);
+		}
+			
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
