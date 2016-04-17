@@ -45,7 +45,7 @@ public class EmployeeServlet extends HttpServlet {
 			    printWriter.println(htmlRespone);
 				List<Employee> employeedetails = employeeDAO.findEmployee(Integer.parseInt(officeCode));
 					request.setAttribute("employeedetails", employeedetails);
-					request.getRequestDispatcher("/WEB-INF/JSPs/allemployeeslist.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/JSPs/employeesbyofficecode.jsp").forward(request, response);
 		}
 		    else
 		      {
