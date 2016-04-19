@@ -1,18 +1,24 @@
 package com.enterprisedatabase.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.enterprisedatabase.dao.CustomerDAO;
+import com.enterprisedatabase.dao.EmployeeDAO;
+
 /**
  * Servlet implementation class EmployeeDeletionServlet
  */
-@WebServlet("/employeedelete")
+@WebServlet("/employeesdelete")
 public class EmployeeDeletionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	EmployeeDAO employeeDAO = new EmployeeDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,7 +37,7 @@ public class EmployeeDeletionServlet extends HttpServlet {
 		boolean isValid = employeeDAO.isIdValidEmployee(Integer.parseInt(employeeId));
 			if(isValid)
 			{
-				employeeDAO.deleteAEmployee(Integer.parseInt(employeeId));
+				employeeDAO.deleteEmployee(Integer.parseInt(employeeId));
 				String htmlRespone = "<html>";
 				htmlRespone += "<h2>Your order is successfully deleted with employeeId=: " + employeeId + "</h2>";
 				htmlRespone += "</html>";

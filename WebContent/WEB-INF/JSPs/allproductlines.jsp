@@ -11,8 +11,8 @@
 <table>
 <tr>
 		<th>Product Line</th>
-		<th>HTML Description</th>
 		<th>Text Description</th>
+		<th>HTML Description</th>
 		<th>Image</th>
 		<th></th>
 	</tr>

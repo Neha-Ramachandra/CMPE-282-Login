@@ -48,16 +48,15 @@ public class ProductLineDAO {
 
 	//find a particular productLine using product line name
 
-	public List<ProductLine> findProductLine(String prodLine)
+	public List<ProductLine> findProductLine(String productLine) throws Exception,IllegalAccessException
 	{
 		List<ProductLine> allProductLines = new ArrayList<ProductLine>();
 
-		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "admin");
 
-			PreparedStatement preparedStatement = con.prepareStatement("select * from productlines where productLine ="+prodLine+"");
+			PreparedStatement preparedStatement = con.prepareStatement("select * from productlines where productLine ="+productLine+"");
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -71,11 +70,7 @@ public class ProductLineDAO {
 
 				allProductLines.add(productLines);
 			}
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
+		
 		return allProductLines;
 	}
 
@@ -105,6 +100,38 @@ public class ProductLineDAO {
 			System.out.println("Product Line is not valid! ");
 		}						
 	}
+	
+	//check whether a particular productline is valid
+		public boolean isIdValidProductLine(String productLineToBeUpdated) throws Exception,IllegalAccessException
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "admin");
+
+	        Statement st = con.createStatement();
+			 
+			ResultSet rs= st.executeQuery("select * from productlines where productLine ="+productLineToBeUpdated);
+			
+			//checking for existance of user entered pin
+			return rs.isBeforeFirst();
+			
+			 
+				         
+		}
+		public static void main(String args[])
+		{
+			ProductLineDAO pd = new ProductLineDAO();
+			try
+			{
+				if(pd.isIdValidProductLine("Planes"))
+					System.out.println("valid");
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+		}
 
 
 	//update a product line's description

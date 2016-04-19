@@ -26,7 +26,7 @@ public class OfficesDAO {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "mahek", "mahek");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "admin");
 
 			PreparedStatement preparedStatement = con.prepareStatement("select * from offices order by officeCode asc");
 
@@ -51,22 +51,35 @@ public class OfficesDAO {
 			}
 			return allOffices;
 	}
+	
+	public boolean isIdValidOffice(Integer officeCodeToShowData) throws Exception,IllegalAccessException
+	{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "admin");
+
+        Statement st = con.createStatement();
+		 
+		ResultSet rs= st.executeQuery("select * from offices where officeCode ="+officeCodeToShowData+"");
+		//checking for existance of user entered pin
+		return rs.isBeforeFirst();
+		 
+			         
+	}
 
 
 //Give Office details by office code
 
-public List<Office> findOfficeDetailsByCode()
+public List<Office> findOfficeDetailsByCode(Integer officeCode)
 {
     PreparedStatement preparedStatement;
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Enter the office code");
-    Integer officeCode = scanner.nextInt();
+    
 
     List<Office> allOfficeInfo = new ArrayList<Office>();
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "mahek", "mahek");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "admin");
 
         Statement st = con.createStatement();
 
@@ -78,15 +91,13 @@ public List<Office> findOfficeDetailsByCode()
                  preparedStatement = con.prepareStatement("select * from offices where officeCode="+officeCode+" ");
                  preparedStatement.execute();
                  Office offices = new Office();
-                 offices.setCity(rs.getString(10));
-                 offices.setState(rs.getString(10));
-                 offices.setCountry(rs.getString(10));
-                 offices.setAddressLine1(rs.getString(6));
-                 offices.setTerritory(rs.getString(8));
-                 offices.setPhone(rs.getString(11));
-                 offices.setPostalCode(rs.getString(10));
-        
-
+                 offices.setOfficeCode(rs.getString(1));
+                 offices.setPhone(rs.getString(3));
+                 offices.setAddressLine1(rs.getString(4));
+                 offices.setCity(rs.getString(2));            
+                 offices.setState(rs.getString(6));
+                 offices.setCountry(rs.getString(7));                
+                 offices.setPostalCode(rs.getString(8));
                  allOfficeInfo.add(offices);
              }
         }  

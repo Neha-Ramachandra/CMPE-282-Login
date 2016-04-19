@@ -17,7 +17,11 @@ public class Employee implements Serializable {
 
 	@Id
 	private int employeeNumber;
+	
+	private int officeCode;
 
+	private int reportsToEmployeeNumber;
+	
 	private String email;
 
 	private String extension;
@@ -63,6 +67,14 @@ public class Employee implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public int getOfficeCode() {
+		return officeCode;
+	}
+
+	public void setOfficeCode(int officeCode) {
+		this.officeCode = officeCode;
 	}
 
 	public String getExtension() {
@@ -133,6 +145,14 @@ public class Employee implements Serializable {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+	
+	public int getReportsToEmployeeNumber() {
+		return reportsToEmployeeNumber;
+	}
+
+	public void setReportsToEmployeeNumber(int reportsToEmployeeNumber) {
+		this.reportsToEmployeeNumber = reportsToEmployeeNumber;
 	}
 
 	public Employee addEmployee(Employee employee) {

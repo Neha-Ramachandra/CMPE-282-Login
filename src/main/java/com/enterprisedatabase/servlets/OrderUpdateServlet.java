@@ -17,7 +17,7 @@ import com.enterprisedatabase.model.Order;
  * Servlet implementation class OrderUpdate
  */
 @WebServlet("/ordersupdate")
-public class OrderUpdate extends HttpServlet {
+public class OrderUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String statusOfOrder;
 	OrderDAO orderDAO = new OrderDAO();
@@ -25,7 +25,7 @@ public class OrderUpdate extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderUpdate() {
+    public OrderUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

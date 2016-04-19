@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,24 +11,23 @@
 <h2>Here are the Office details:</h2>
 <table>
 <tr>
+		<th>Office Code</th>
+		<th>Phone</th>
+		<th>Address</th>
 		<th>City</th>
 		<th>State</th>
 		<th>Country</th>
-		<th>Address</th>
-		<th>Territory</th>
-		<th>Office Phone</th>
-		<th>Office Postal Code</th>
+		<th>Postal Code</th>
 	</tr>
-	
 	
     <c:forEach items="${officeInfo}" var="officeModel">
         <tr>
-            <td><c:out value="${officeModel.getCity()}" /></td>
-             <td><c:out value="${officeModel.getState()}" /></td>
-              <td><c:out value="${officeModel.getCountry()}" /></td>
-               <td><c:out value="${officeModel.getAddressLine1()}" /></td>
-                <td><c:out value="${officeModel.getTerritory()}" /></td>
-        	 <td><c:out value="${officeModel.getPhone()}" /></td>
+            <td><c:out value="${officeModel.getOfficeCode()}" /></td>
+             <td><c:out value="${officeModel.getPhone()}" /></td>
+              <td><c:out value="${officeModel.getAddressLine1()}" /></td>
+               <td><c:out value="${officeModel.getCity()}" /></td>
+                <td><c:out value="${officeModel.getState()}" /></td>
+        	 <td><c:out value="${officeModel.getCountry()}" /></td>
         	  <td><c:out value="${officeModel.getPostalCode()}" /></td>
                
            
