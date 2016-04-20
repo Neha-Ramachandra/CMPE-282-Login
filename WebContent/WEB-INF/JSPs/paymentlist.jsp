@@ -17,7 +17,7 @@
 	</tr>
 	
 	
-    <c:forEach items="${paymentinfo}" var="paymentModel">
+    <c:forEach items="${paymentdetails}" var="paymentModel">
         <tr>
             <td><c:out value="${paymentinfo.getId()}" /></td>
              <td><c:out value="${paymentinfo.getAmount()}" /></td>
